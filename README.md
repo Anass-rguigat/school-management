@@ -1,20 +1,20 @@
-# 🎓 School Management System
+# School Management System
 
 A professional, feature-rich web application for managing students, books, documents, and system audit logs. Built with a "Premium" aesthetic and robust backend architecture.
 
-## 🌟 Key Features
+##  Key Features
 
--   **🔐 Secure Authentication**: Role-based access control (Admin/Staff) with secure session management.
--   **👥 Student Management**: Full CRUD operations for student records with advanced filtering.
--   **📚 Library Management**: Track books, availability, and archival status.
--   **📄 Document Management**: Professional document upload system with live previews (Images/PDFs) and secure downloads.
--   **📦 Soft-Delete Archive**: Advanced archival system for Students, Books, and Documents, allowing for data recovery without permanent deletion.
--   **📜 System Audit Logs**: Comprehensive logging of every system action (Login, Logout, Create, Update, Delete) with detailed activity modals.
--   **💎 Premium UI**: Modern, responsive interface using Bootstrap 5, glassmorphism effects, and professional micro-animations.
+-   ** Secure Authentication**: Role-based access control (Admin/Staff) with secure session management.
+-   ** Student Management**: Full CRUD operations for student records with advanced filtering.
+-   ** Library Management**: Track books, availability, and archival status.
+-   ** Document Management**: Professional document upload system with live previews (Images/PDFs) and secure downloads.
+-   ** Soft-Delete Archive**: Advanced archival system for Students, Books, and Documents, allowing for data recovery without permanent deletion.
+-   ** System Audit Logs**: Comprehensive logging of every system action (Login, Logout, Create, Update, Delete) with detailed activity modals.
+-   ** Premium UI**: Modern, responsive interface using Bootstrap 5, glassmorphism effects, and professional micro-animations.
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 -   **Backend**: Java Servlets (Java 8+)
 -   **Frontend**: JSP, JSTL, HTML5, Vanilla CSS
@@ -25,7 +25,7 @@ A professional, feature-rich web application for managing students, books, docum
 
 ---
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before running the project, ensure you have the following installed:
 
@@ -36,7 +36,7 @@ Before running the project, ensure you have the following installed:
 
 ---
 
-## 🚀 Getting Started (From Scratch)
+##  Getting Started (From Scratch)
 
 ### 1. Clone the Project
 
@@ -74,7 +74,7 @@ The application will be available at: **[http://localhost:8081](http://localhost
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 -   `src/main/java/controller`: Servlets handling business logic and routing.
 -   `src/main/java/dao`: Data Access Objects for database interaction.
@@ -85,12 +85,12 @@ The application will be available at: **[http://localhost:8081](http://localhost
 
 ---
 
-## 🛡️ Security & Auditing
+##  Security & Auditing
 
 The system enforces strict security checks. Only users with the **ADMIN** role can perform deletions and manage users. Every interaction is recorded in the **Audit Logs**, which can be reviewed by administrators to track system activity in real-time.
 
 ---
 
-## 📄 License
+##  License
 
 Developed for School Management. All rights reserved.
