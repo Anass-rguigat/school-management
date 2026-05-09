@@ -79,11 +79,53 @@ Plain Old Java Objects (POJOs) representing the system's data entities.
 - **`css/custom.css`**: Custom styling for the application's modern look and feel.
 - **`uploads/`**: Directory where uploaded documents are stored.
 
+##  Prerequisites
+
+Before running the project, ensure you have the following installed:
+
+1.  **JDK 1.8** or higher.
+2.  **Apache Maven** (for dependency management and running the server).
+3.  **MySQL/XAMPP** (to host the database).
+
 ---
 
-## How to Run
+## 🚀 Getting Started
 
-1. **Database Setup**: Execute `schema.sql` in your MySQL instance.
-2. **Configuration**: Update `DBConnection.java` with your database credentials.
-3. **Build**: Run `mvn clean install`.
-4. **Deploy**: Use `mvn jetty:run` to start the application on `http://localhost:8081`.
+### 1. Database Setup
+
+1.  Open your MySQL terminal or phpMyAdmin.
+2.  Execute the script provided in `schema.sql`:
+    ```bash
+    mysql -u root -p < schema.sql
+    ```
+    *Note: This will create the database `school_management_abdsamad`, all required tables, and default admin/user accounts.*
+
+### 2. Configuration
+
+Ensure the database connection details in `src/main/java/util/DBConnection.java` match your MySQL setup (default is `root` with no password).
+
+### 3. Build & Run
+
+Open your terminal in the project root directory and run:
+
+```bash
+# Clean and install dependencies
+mvn clean install
+
+# Start the Jetty development server
+mvn jetty:run
+```
+
+The application will be available at: **[http://localhost:8081](http://localhost:8081)**
+
+---
+
+##  Security & Auditing
+
+The system enforces strict security checks. Only users with the **ADMIN** role can perform deletions and manage users. Every interaction is recorded in the **Audit Logs**, which can be reviewed by administrators to track system activity in real-time.
+
+---
+
+## License
+
+Developed for School Management. All rights reserved.
