@@ -1,96 +1,89 @@
 # School Management System
 
-A professional, feature-rich web application for managing students, books, documents, and system audit logs. Built with a "Premium" aesthetic and robust backend architecture.
+This project is a comprehensive Java-based School Management System built using Java Servlets, JSP, and MySQL. It follows the DAO (Data Access Object) design pattern for robust database interaction and clean separation of concerns.
 
-##  Key Features
+## Project Structure Overview
 
--   ** Secure Authentication**: Role-based access control (Admin/Staff) with secure session management.
--   ** Student Management**: Full CRUD operations for student records with advanced filtering.
--   ** Library Management**: Track books, availability, and archival status.
--   ** Document Management**: Professional document upload system with live previews (Images/PDFs) and secure downloads.
--   ** Soft-Delete Archive**: Advanced archival system for Students, Books, and Documents, allowing for data recovery without permanent deletion.
--   ** System Audit Logs**: Comprehensive logging of every system action (Login, Logout, Create, Update, Delete) with detailed activity modals.
--   ** Premium UI**: Modern, responsive interface using Bootstrap 5, glassmorphism effects, and professional micro-animations.
-
----
-
-##  Technology Stack
-
--   **Backend**: Java Servlets (Java 8+)
--   **Frontend**: JSP, JSTL, HTML5, Vanilla CSS
--   **Styling**: Bootstrap 5, Bootstrap Icons
--   **Build Tool**: Apache Maven
--   **Web Server**: Eclipse Jetty (9.4+)
--   **Database**: MySQL (MariaDB)
+### Root Directory
+- **`pom.xml`**: Maven configuration file containing project dependencies (Servlets, JSP, JSTL, MySQL Connector, Commons FileUpload) and build plugins.
+- **`schema.sql`**: SQL script for initializing the database schema, including tables for Users, Students, Books, Borrowings, Documents, and Logs.
+- **`README.md`**: Project documentation (this file).
+- **`.gitignore`**: Specifies files and directories to be ignored by Git (e.g., `target/`, `.idea/`, `.vscode/`).
+- **`src/`**: Main source code directory.
+- **`school-management/`**: A mirrored sub-directory containing the same project structure.
 
 ---
 
-##  Prerequisites
+## Source Code (`src/main/java`)
 
-Before running the project, ensure you have the following installed:
+### Controllers (`controller/`)
+These Servlets handle HTTP requests, process user input, and manage navigation between views.
+- **`ArchiveServlet.java`**: Manages archiving and unarchiving of records (Students, Books, Documents).
+- **`BookServlet.java`**: Handles CRUD operations for the library's book collection.
+- **`BorrowServlet.java`**: Manages the borrowing process (assigning books to students).
+- **`DashboardServlet.java`**: Provides summary statistics and overview for the admin dashboard.
+- **`DocumentServlet.java`**: Manages document uploads, downloads, and metadata.
+- **`LoginServlet.java`**: Handles user authentication and session management.
+- **`LogServlet.java`**: Manages the display and filtering of system activity logs.
+- **`StudentServlet.java`**: Handles CRUD operations for student records.
+- **`UserServlet.java`**: Manages system users and their roles (Admin, Manager, User).
 
-1.  **JDK 1.8** or higher.
-2.  **Apache Maven** (for dependency management and running the server).
-3.  **MySQL/XAMPP** (to host the database).
-4.  **Git** (optional, for cloning).
+### Data Access Objects (`dao/` & `dao/impl/`)
+This layer handles all direct interactions with the MySQL database.
+- **`BookDAO.java` / `BookDAOImpl.java`**: Interface and implementation for Book database operations.
+- **`BorrowDAO.java` / `BorrowDAOImpl.java`**: Interface and implementation for Borrowing records.
+- **`DocumentDAO.java` / `DocumentDAOImpl.java`**: Interface and implementation for Document storage and retrieval.
+- **`LogDAO.java` / `LogDAOImpl.java`**: Interface and implementation for system audit logs.
+- **`StudentDAO.java` / `StudentDAOImpl.java`**: Interface and implementation for Student records.
+- **`UserDAO.java` / `UserDAOImpl.java`**: Interface and implementation for User management and authentication.
 
----
+### Models (`model/`)
+Plain Old Java Objects (POJOs) representing the system's data entities.
+- **`Book.java`**: Represents a library book.
+- **`Borrow.java`**: Represents a borrowing transaction.
+- **`Document.java`**: Represents an uploaded document.
+- **`Log.java`**: Represents a system activity log entry.
+- **`Student.java`**: Represents a student record.
+- **`User.java`**: Represents a system user.
 
-##  Getting Started (From Scratch)
+### Security & Middleware (`filter/` & `listener/`)
+- **`AuthFilter.java`**: Restricts access to authenticated users only.
+- **`RoleFilter.java`**: Handles granular permission checks based on user roles.
+- **`LoggingFilter.java`**: Intercepts requests to log user activities for audit purposes.
+- **`ActiveSessionListener.java`**: Monitors session creation and destruction to track active users.
 
-### 1. Clone the Project
-
-```bash
-git clone https://github.com/your-username/school-management-system.git
-cd school-management-system
-```
-
-### 2. Database Setup
-
-1.  Open your MySQL terminal or phpMyAdmin.
-2.  Execute the script provided in `schema.sql`:
-    ```bash
-    mysql -u root -p < schema.sql
-    ```
-    *Note: This will create the database `school_management_abdsamad`, all required tables, and default admin/user accounts.*
-
-### 3. Configuration
-
-Ensure the database connection details in `src/main/java/util/DBConnection.java` match your MySQL setup (default is `root` with no password).
-
-### 4. Build & Run
-
-Open your terminal in the project root directory and run:
-
-```bash
-# Clean and install dependencies
-mvn clean install
-
-# Start the Jetty development server
-mvn jetty:run
-```
-
-The application will be available at: **[http://localhost:8081](http://localhost:8081)**
+### Utilities (`util/`)
+- **`DBConnection.java`**: Singleton utility for managing the MySQL database connection pool.
+- **`LoggerUtil.java`**: Helper class for standardized logging across the application.
 
 ---
 
-##  Project Structure
+## Web Application (`src/main/webapp`)
 
--   `src/main/java/controller`: Servlets handling business logic and routing.
--   `src/main/java/dao`: Data Access Objects for database interaction.
--   `src/main/java/model`: POJO classes representing system entities.
--   `src/main/java/util`: Utilities (Database connection, Logging, File management).
--   `src/main/webapp/views`: JSP files for the user interface.
--   `src/main/webapp/uploads`: Storage directory for uploaded documents.
+### Frontend Views (`views/`)
+- **`dashboard.jsp`**: Main administrative interface showing key metrics.
+- **`login.jsp`**: Authentication portal for the system.
+- **`403.jsp` / `404.jsp`**: Error handling pages for Access Denied and Not Found.
+- **`books/`**: JSPs for listing, adding, editing, and archiving books.
+- **`students/`**: JSPs for managing student information and history.
+- **`borrow/`**: JSPs for tracking book distributions.
+- **`documents/`**: JSPs for file management and archiving.
+- **`users/`**: JSPs for administrator user management.
+- **`logs/`**: JSP for viewing system-wide activity logs.
+- **`common/`**: Reusable UI components:
+    - **`navbar.jsp`**: Top navigation bar with user info and logout.
+    - **`sidebar.jsp`**: Side navigation menu for quick access to modules.
+
+### Configuration & Assets
+- **`WEB-INF/web.xml`**: Deployment descriptor defining servlet mappings, filters, and listeners.
+- **`css/custom.css`**: Custom styling for the application's modern look and feel.
+- **`uploads/`**: Directory where uploaded documents are stored.
 
 ---
 
-##  Security & Auditing
+## How to Run
 
-The system enforces strict security checks. Only users with the **ADMIN** role can perform deletions and manage users. Every interaction is recorded in the **Audit Logs**, which can be reviewed by administrators to track system activity in real-time.
-
----
-
-##  License
-
-Developed for School Management. All rights reserved.
+1. **Database Setup**: Execute `schema.sql` in your MySQL instance.
+2. **Configuration**: Update `DBConnection.java` with your database credentials.
+3. **Build**: Run `mvn clean install`.
+4. **Deploy**: Use `mvn jetty:run` to start the application on `http://localhost:8081`.
